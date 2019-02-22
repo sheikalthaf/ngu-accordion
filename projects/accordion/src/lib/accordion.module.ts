@@ -5,10 +5,8 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [AccordionComponent, HeaderComponent, BodyComponent],
   exports: [AccordionComponent, HeaderComponent, BodyComponent]
 })
-export class NguAccordionModule { }
+export class NguAccordionModule {}
