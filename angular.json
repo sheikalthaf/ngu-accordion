@@ -75,6 +75,8 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
+              "baseHref": "https://sheikalthaf.github.io/ngu-accordion/",
+              "deployUrl": "https://sheikalthaf.github.io/ngu-accordion/",
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,

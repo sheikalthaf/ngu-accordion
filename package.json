@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve --project accordion-demo",
     "build:lib": "ng build --project accordion",
-    "build:demo": "ng build --prod --project accordion-demo",
+    "build:demo": "ng build --project accordion-demo --configuration=production",
     "build": "yarn build:lib && yarn build:demo",
     "precommit": "yarn run format:fix",
     "format:check": "prettier --config ./.prettierrc --list-different \"projects/**/{app,lib,environments}/**/*{.ts,.js,.json,.html,.css,.scss}\"",
