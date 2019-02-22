@@ -11,7 +11,7 @@ export class DynamicComponent implements OnInit {
   itemCol = Array(50)
     .fill(0)
     .map((e, i) => i + 1);
-  items = [];
+  items: any[] = [];
 
   constructor() {
     interval(500)

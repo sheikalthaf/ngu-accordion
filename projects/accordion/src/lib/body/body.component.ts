@@ -5,15 +5,13 @@ import {
   Component,
   ContentChild,
   EventEmitter,
-  OnInit,
-  Output,
-  Renderer2
+  Output
 } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AccordionData } from '../accordion-data';
 import { HeaderComponent } from '../header/header.component';
 import { bodyExpansion } from './../accordion.animation';
-import { AccordionData } from '../accordion-data';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -34,7 +32,7 @@ export class BodyComponent implements AfterContentInit {
   @Output() clickListners = new EventEmitter<boolean>();
   headerEvt: Observable<boolean> = of(this.isActive);
 
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   animateAccord(active: boolean, isMatched: boolean) {
     if (isMatched || this.isActive !== active) {

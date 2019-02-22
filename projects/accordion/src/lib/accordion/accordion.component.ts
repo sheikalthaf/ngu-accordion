@@ -1,38 +1,38 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   Input,
-  OnInit,
-  QueryList,
-  OnDestroy
+  OnDestroy,
+  QueryList
 } from '@angular/core';
-import { BodyComponent } from '../body/body.component';
-import { AccordionData } from '../accordion-data';
-import { switchMap, map, startWith } from 'rxjs/operators';
 import { merge, Subscription } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
+import { AccordionData } from '../accordion-data';
+import { BodyComponent } from '../body/body.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: '[ngu-accordion]',
   templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./accordion.component.scss']
 })
 export class AccordionComponent implements AfterContentInit, OnDestroy {
   /** used to maintain the single open at a time */
   @Input() singular = true;
+
   _mainData: AccordionData[] = [];
+
   _currentActive: number;
 
   /** close all the body child's on Init */
   @Input() collapsed = true;
+
   @ContentChildren(BodyComponent) _accBody: QueryList<BodyComponent>;
+
   clickedSub: Subscription;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   ngAfterContentInit() {
     this.clickedSub = this._accBody.changes
