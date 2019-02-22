@@ -1,0 +1,17 @@
+<button routerLink="" routerLinkActive="router-link-active">Static</button>
+<h1>Accordion refresh automatically</h1>
+<div ngu-accordion [singular]="false">
+  <ngu-accordion-body *ngFor="let item of items; let i = index">
+    <div ngu-accordion-header #header>
+      <span>MyHeader {{ i }}</span>
+      <span>{{ header.isActive ? '-' : '+' }}</span>
+    </div>
+    <div class="myAccordion">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laboriosam deleniti quaerat
+        reiciendis! Sit totam, rem maxime eligendi consequatur ipsa eum nesciunt eaque sapiente
+        consectetur consequuntur eos fugit ea tempore!
+      </p>
+    </div>
+  </ngu-accordion-body>
+</div>

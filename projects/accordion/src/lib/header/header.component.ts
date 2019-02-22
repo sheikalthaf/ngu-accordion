@@ -1,26 +1,26 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'ngu-accordion-header',
+  // tslint:disable-next-line:component-selector
+  selector: '[ngu-accordion-header]',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   host: {
-    '[class.active]': 'isActive',
     '(click)': 'headerClick()'
   }
 })
 export class HeaderComponent {
   isActive: boolean;
 
+  @Output() headerClicked = new EventEmitter();
+
   set direction(val: boolean) {
     this.isActive = val;
   }
 
-  @Output('headerClicked') headerClicked = new EventEmitter();
+  constructor() {}
 
   headerClick() {
     this.headerClicked.emit();
   }
-
-  constructor() {}
 }

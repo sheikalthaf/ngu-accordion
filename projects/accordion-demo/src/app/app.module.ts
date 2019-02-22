@@ -3,12 +3,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-// import { NguAccordionModule } from '../../../accordion/src/public_api';
-import { NguAccordionModule } from 'accordion';
+import { NguAccordionModule } from '../../../accordion/src/public_api';
+import { DynamicComponent } from './dynamic/dynamic.component';
+import { StaticComponent } from './static/static.component';
+import { AppRoutingModule } from './app.routing';
+// import { NguAccordionModule } from 'accordion';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, NguAccordionModule],
+  declarations: [AppComponent, DynamicComponent, StaticComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, NguAccordionModule],
   providers: [],
   bootstrap: [AppComponent]
 })

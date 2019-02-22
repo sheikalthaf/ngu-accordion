@@ -1,0 +1,63 @@
+<button [routerLink]="['/dynamic']" routerLinkActive="router-link-active">Dynamic</button>
+<h2> <b>Accordion With Singularity</b></h2>
+<div ngu-accordion>
+  <ngu-accordion-body>
+    <div ngu-accordion-header #header>
+      <span>MyHeader1</span>
+      <span>{{ header.isActive ? '-' : '+' }}</span>
+    </div>
+    <div class="myAccordion">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laboriosam deleniti quaerat
+        reiciendis! Sit totam, rem maxime eligendi consequatur ipsa eum nesciunt eaque sapiente
+        consectetur consequuntur eos fugit ea tempore!
+      </p>
+    </div>
+  </ngu-accordion-body>
+
+  <ngu-accordion-body>
+    <div ngu-accordion-header #header2>
+      <span>MyHeader2</span>
+      <span>{{ header2.isActive ? '-' : '+' }}</span></div
+    >
+    <div class="myAccordion">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laboriosam deleniti quaerat
+        reiciendis! Sit totam, rem maxime eligendi consequatur ipsa eum nesciunt eaque sapiente
+        consectetur consequuntur eos fugit ea tempore!
+      </p>
+    </div>
+  </ngu-accordion-body>
+</div>
+
+<h2>
+  <b>Accordion Without Singularity</b>
+</h2>
+<div ngu-accordion [singular]="false">
+  <ngu-accordion-body>
+    <div ngu-accordion-header #header3>
+      <span>MyHeader1</span>
+      <span>{{ header3.isActive ? '-' : '+' }}</span></div
+    >
+    <div class="myAccordion">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laboriosam deleniti quaerat
+        reiciendis! Sit totam, rem maxime eligendi consequatur ipsa eum nesciunt eaque sapiente
+        consectetur consequuntur eos fugit ea tempore!
+      </p>
+    </div>
+  </ngu-accordion-body>
+  <ngu-accordion-body>
+    <div ngu-accordion-header #header4>
+      <span>MyHeader2</span>
+      <span>{{ header4.isActive ? '-' : '+' }}</span></div
+    >
+    <div class="myAccordion">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laboriosam deleniti quaerat
+        reiciendis! Sit totam, rem maxime eligendi consequatur ipsa eum nesciunt eaque sapiente
+        consectetur consequuntur eos fugit ea tempore!
+      </p>
+    </div>
+  </ngu-accordion-body>
+</div>

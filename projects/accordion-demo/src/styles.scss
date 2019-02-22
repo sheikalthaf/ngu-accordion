@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+ngu-accordion-body {
+  border: 1px solid #ccc;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  margin: 0;
+  transition: 0.3s ease margin;
+  &.active {
+    margin: 10px 0;
+    border: 1px solid #b50937;
+    [ngu-accordion-header] {
+      background-color: #b50937;
+      color: white;
+    }
+  }
+}
+
+div[ngu-accordion-header] {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  background: #e6e6e6;
+  padding: 10px;
+  span:first-child {
+    flex: 1;
+  }
+  &.active {
+    background-color: #b50937;
+    color: white;
+  }
+}
+
+.myAccordion {
+  padding: 0 10px;
+}

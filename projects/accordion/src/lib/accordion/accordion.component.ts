@@ -6,21 +6,22 @@ import {
   ContentChildren,
   Input,
   OnInit,
-  QueryList
+  QueryList,
+  OnDestroy
 } from '@angular/core';
 import { BodyComponent } from '../body/body.component';
 import { AccordionData } from '../accordion-data';
 import { switchMap, map, startWith } from 'rxjs/operators';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'ngu-accordion',
+  selector: '[ngu-accordion]',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccordionComponent implements AfterContentInit {
+export class AccordionComponent implements AfterContentInit, OnDestroy {
   /** used to maintain the single open at a time */
   @Input() singular = true;
   _mainData: AccordionData[] = [];
@@ -29,11 +30,12 @@ export class AccordionComponent implements AfterContentInit {
   /** close all the body child's on Init */
   @Input() collapsed = true;
   @ContentChildren(BodyComponent) _accBody: QueryList<BodyComponent>;
+  clickedSub: Subscription;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterContentInit() {
-    this._accBody.changes
+    this.clickedSub = this._accBody.changes
       .pipe(
         startWith(1),
         switchMap(() => merge(...this.initFnt()))
@@ -41,6 +43,10 @@ export class AccordionComponent implements AfterContentInit {
       .subscribe(res => {
         this.headerClicks(res.accordionBody, res.e);
       });
+  }
+
+  ngOnDestroy() {
+    this.clickedSub.unsubscribe();
   }
 
   private initFnt() {
@@ -58,7 +64,7 @@ export class AccordionComponent implements AfterContentInit {
 
       accordionBody.referencer = this._mainData[index];
 
-      return accordionBody.clickListner.pipe(map(e => ({ accordionBody, e })));
+      return accordionBody.headerEvt.pipe(map(e => ({ accordionBody, e })));
     });
   }
 
