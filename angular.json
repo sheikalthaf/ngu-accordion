@@ -2,5 +2,163 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "accordion": {
+      "root": "projects/accordion",
+      "sourceRoot": "projects/accordion/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/accordion/tsconfig.lib.json",
+            "project": "projects/accordion/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/accordion/src/test.ts",
+            "tsConfig": "projects/accordion/tsconfig.spec.json",
+            "karmaConfig": "projects/accordion/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/accordion/tsconfig.lib.json",
+              "projects/accordion/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "accordion-demo": {
+      "root": "projects/accordion-demo/",
+      "sourceRoot": "projects/accordion-demo/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/accordion-demo",
+            "index": "projects/accordion-demo/src/index.html",
+            "main": "projects/accordion-demo/src/main.ts",
+            "polyfills": "projects/accordion-demo/src/polyfills.ts",
+            "tsConfig": "projects/accordion-demo/tsconfig.app.json",
+            "assets": [
+              "projects/accordion-demo/src/favicon.ico",
+              "projects/accordion-demo/src/assets"
+            ],
+            "styles": ["projects/accordion-demo/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/accordion-demo/src/environments/environment.ts",
+                  "with": "projects/accordion-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "accordion-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "accordion-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "accordion-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/accordion-demo/src/test.ts",
+            "polyfills": "projects/accordion-demo/src/polyfills.ts",
+            "tsConfig": "projects/accordion-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/accordion-demo/karma.conf.js",
+            "styles": ["projects/accordion-demo/src/styles.scss"],
+            "scripts": [],
+            "assets": [
+              "projects/accordion-demo/src/favicon.ico",
+              "projects/accordion-demo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/accordion-demo/tsconfig.app.json",
+              "projects/accordion-demo/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "accordion-demo-e2e": {
+      "root": "projects/accordion-demo-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/accordion-demo-e2e/protractor.conf.js",
+            "devServerTarget": "accordion-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "accordion-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/accordion-demo-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "accordion-demo"
 }

@@ -1,0 +1,13 @@
+:host {
+  position: relative;
+  display: block;
+}
+.child {
+  overflow: hidden;
+}
+
+.activeCollapse {
+  position: relative;
+  overflow: hidden;
+  height: 0px;
+}
